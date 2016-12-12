@@ -16,11 +16,16 @@ public class GameManager : MonoBehaviour {
 
 		if (Input.GetMouseButtonUp (0)) {
 			if (Physics.Raycast (ray, out hit)) {
+
+				if (hit.collider.tag == "Object") {
+					Destroy (hit.transform.parent.gameObject);
+				}
+
 				if (hit.collider.tag == "Tile") {
-					selectTile (hit.collider.GetComponent<TileController> ());
+					//selectTile (hit.collider.GetComponent<TileController> ());
 				} else if (hit.collider.tag == "BehindGame") {
-					selectedTile.uiControl.SetActive (false);
-					selectedTile = null;
+					//selectedTile.uiControl.SetActive (false);
+					//selectedTile = null;
 				}
 			}
 		}

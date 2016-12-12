@@ -34,7 +34,7 @@ public class ReadJSON : MonoBehaviour {
 
 		if (File.Exists (dataPath)) {
 			Debug.Log ("File exsists, replacing!");
-			File.AppendAllText (dataPath, in_file);
+			//File.AppendAllText (dataPath, in_file);
 		} else {
 			Debug.Log ("Writing new json file");
 

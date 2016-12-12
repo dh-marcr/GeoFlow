@@ -7,6 +7,7 @@ public class TileController : MonoBehaviour
 	void Start ()
 	{
 		uiControl.SetActive (false);
+		restrictionVal = 0.5f * ((gridSize / 2) + 1);
 	}
 
 	public void moveTile (int in_value)
@@ -17,22 +18,22 @@ public class TileController : MonoBehaviour
 		switch (in_value) {
 		case 0:
 			node = leftNode;
-			moveValue = new Vector2 (-1.1f, 0);
+			moveValue = new Vector2 (-1, 0);
 			break;
 
 		case 1:
 			node = rightNode;
-			moveValue = new Vector2 (1.1f, 0);
+			moveValue = new Vector2 (1, 0);
 			break;
 
 		case 2:
 			node = upNode;
-			moveValue = new Vector2 (0, 1.1f);
+			moveValue = new Vector2 (0, 1);
 			break;
 
 		case 3:
 			node = downNode;
-			moveValue = new Vector2 (0, -1.1f);
+			moveValue = new Vector2 (0, -1);
 			break;
 		}
 
@@ -40,7 +41,7 @@ public class TileController : MonoBehaviour
 
 		if (canMove) {
 			Vector3 tile = transform.position;
-			tile = new Vector3 (tile.x + moveValue.x, tile.y + moveValue.y, 0);
+			tile = new Vector3 (tile.x + moveValue.x, tile.y + moveValue.y, tile.z);
 			LeanTween.value (gameObject, transform.position, tile, 0.25f).setOnUpdate ((Vector3 val) => transform.position = val);
 		} else {
 			Debug.Log ("<color=red>Cannot move tile, there is a tile already there</color>");
@@ -67,5 +68,10 @@ public class TileController : MonoBehaviour
 
 	public float radius = 0.5f;
 	public Transform leftNode, rightNode, upNode, downNode;
+	public int gridSize;
+	public float restrictionVal;
+
+	//testing only
+	public GameObject objectHolder;
 }
 

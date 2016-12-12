@@ -24,10 +24,10 @@ public class ViewportFollower : MonoBehaviour {
 		}
 	}
 
-	public float boxAdjustment;
-	public float edgeOffset;
-	public Vector2 viewportSize;
-
 	public Camera pointerCam;
-	public Vector3 screenPosition;
+
+	float boxAdjustment;
+	public float edgeOffset;
+	Vector3 screenPosition;
+	Vector2 viewportSize;
 }

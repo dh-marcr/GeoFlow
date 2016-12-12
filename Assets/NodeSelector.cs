@@ -27,9 +27,7 @@ public class NodeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		if (partOfConnection)
 			return;
 
-		if (!creationController.isDown) {
-			changeSelected (false, Color.white);
-		}
+		changeSelected (false, Color.white);
 		creationController.hoverOver (false, null);
 	}
 
