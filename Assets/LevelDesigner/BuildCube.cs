@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BuildCube : MonoBehaviour
 {
-
 	void Start ()
 	{
 		
@@ -59,16 +58,14 @@ public class BuildCube : MonoBehaviour
 			}
 		}
 
-		newFaceHolder.transform.position = Vector3.zero;
-		calculateFaceRotation (newFaceHolder.transform);
 		newFaceHolder.transform.parent = transform;
+		calculateFaceRotation (newFaceHolder.transform);
 	}
 
 	int faceIndex = 0;
 
 	void calculateFaceRotation (Transform in_grid)
 	{
-
 		//which orientation the new face should be - left, right, front, back, up, down
 
 		Vector3 newRotation = Vector3.zero;
@@ -86,12 +83,12 @@ public class BuildCube : MonoBehaviour
 
 		case 3:
 			//left face
-			newRotation = new Vector3 (0, 90, 180);
+			newRotation = new Vector3 (0, 90, 0);
 			break;
 
 		case 4:
 			//right face
-			newRotation = new Vector3 (0, 270, 180);
+			newRotation = new Vector3 (0, 270, 0);
 			break;
 
 		case 5:
@@ -101,7 +98,8 @@ public class BuildCube : MonoBehaviour
 		}
 
 		in_grid.name = "Face (" + faceIndex + ")";
-		in_grid.eulerAngles = newRotation;
+		in_grid.localEulerAngles = newRotation;
+		in_grid.localPosition = Vector3.zero;
 		faceIndex++;
 	}
 

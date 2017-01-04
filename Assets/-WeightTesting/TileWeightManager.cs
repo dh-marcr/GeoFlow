@@ -8,7 +8,7 @@ public class TileWeightManager : MonoBehaviour
 	{
 	
 		cubeCenter = GameObject.Find ("CubeCenter").transform;
-		objectHolder = GetComponent<TileController> ().objectHolder;
+		//objectHolder = GetComponent<PathNode> ().objectHolder;
 		originalWeightValue = transform.localPosition.z;
 	}
 

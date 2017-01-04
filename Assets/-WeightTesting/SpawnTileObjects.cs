@@ -5,9 +5,9 @@ public class SpawnTileObjects : MonoBehaviour {
 
 	public void spawnObjectsOnTiles(){
 
-		allTiles = FindObjectsOfType<TileController> ();
+		allTiles = FindObjectsOfType<PathNode> ();
 
-		foreach (TileController tc in allTiles) {
+		foreach (PathNode tc in allTiles) {
 
 			int objectCount = Random.Range (0, 5);
 
@@ -15,7 +15,7 @@ public class SpawnTileObjects : MonoBehaviour {
 
 				GameObject newObject = (GameObject)Instantiate (possibleObjects [Random.Range (0, possibleObjects.Length)], Vector3.zero, tc.transform.rotation) as GameObject;
 				newObject.transform.localScale = new Vector3 (1, 1, 1);
-				newObject.transform.parent = tc.objectHolder.transform;
+				//newObject.transform.parent = tc.objectHolder.transform;
 				newObject.transform.localPosition = randomPositionOnTile (tc.transform);
 			}
 		}
@@ -30,6 +30,6 @@ public class SpawnTileObjects : MonoBehaviour {
 		return new Vector3 (Random.Range (-xBounds, xBounds), Random.Range (-yBounds, yBounds), 0);
 	}
 
-	TileController[] allTiles;
+	PathNode[] allTiles;
 	public GameObject[] possibleObjects;
 }

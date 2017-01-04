@@ -8,7 +8,8 @@ public enum Direction{
 	up,
 	down,
 	forward,
-	backward
+	backward,
+	none
 }
 
 public enum ExitType{
@@ -25,4 +26,11 @@ public enum ExitType{
 	bottomLeft = 9,
 	bottomMiddle = 10,
 	bottomRight = 11
+}
+
+public enum PathNodeType{
+
+	path, 
+	start,
+	finish
 }

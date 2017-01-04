@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour {
 			if (Physics.Raycast (ray, out hit)) {
 
 				if (hit.collider.tag == "Object") {
-					Destroy (hit.transform.parent.gameObject);
+					//Destroy (hit.transform.parent.gameObject);
 				}
 
 				if (hit.collider.tag == "Tile") {
@@ -51,4 +52,6 @@ public class GameManager : MonoBehaviour {
 	static public GameManager instance;
 
 	public TileController selectedTile;
+
+	public List<Transform> currentPath = new List<Transform>();
 }
