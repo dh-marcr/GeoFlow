@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraControl : MonoBehaviour
 {
 
-	void Start ()
+	public void SetAngle ()
 	{
 		transform.localEulerAngles = defaultPosition;
 	}
@@ -20,12 +20,12 @@ public class CameraControl : MonoBehaviour
 		Vector3 currentAngle = angle.localEulerAngles;
 
 		switch (in_dir) {
-		case Direction.left:
+		case Direction.right:
 			newRot = new Vector3 (current.x, current.y - 90, current.z);
 			RotateLeftRightCamera (newRot);
 			break;
 
-		case Direction.right:
+		case Direction.left:
 			newRot = new Vector3 (current.x, current.y + 90, current.z);
 			RotateLeftRightCamera (newRot);
 			break;

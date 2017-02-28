@@ -18,10 +18,6 @@ public class SwipeControl : MonoBehaviour
 					objectToSwipe = hit.transform;
 					cameraSwipe = true;
 					swiping = true;
-				} else if (hit.collider.tag == "Tile") {
-					objectToSwipe = hit.transform;
-					tileSwipe = true;
-					swiping = true;
 				}
 			}
 		}
@@ -59,15 +55,8 @@ public class SwipeControl : MonoBehaviour
 		if (newDir == Direction.none)
 			return;
 
-		if (tileSwipe) {
-
-			TileController tc = objectToSwipe.GetComponent<TileController> ();
-			tc.moveTile (newDir);
-
-			tileSwipe = false;
-		} else if (cameraSwipe) {
-
-			CameraControl cc = objectToSwipe.GetComponentInParent<CameraControl> ();
+		if (cameraSwipe) {
+			CameraControl cc = FindObjectOfType<CameraControl> ();
 			cc.SwipeCamera (newDir);
 
 			cameraSwipe = false;

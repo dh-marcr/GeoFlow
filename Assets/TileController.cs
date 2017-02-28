@@ -10,28 +10,28 @@ public class TileController : MonoBehaviour
 		restrictionVal = 0.5f * ((gridSize / 2) + 1);
 	}
 
-	public void moveTile (Direction in_dir)
+	public void moveTile (int in_dir)
 	{
 		Transform node = null;
 		Vector2 moveValue = Vector2.zero;
 
 		switch (in_dir) {
-		case Direction.left:
+		case 0:
 			node = leftNode;
 			moveValue = new Vector2 (-moveVal, 0);
 			break;
 
-		case Direction.right:
+		case 1:
 			node = rightNode;
 			moveValue = new Vector2 (moveVal, 0);
 			break;
 
-		case Direction.up:
+		case 2:
 			node = upNode;
 			moveValue = new Vector2 (0, moveVal);
 			break;
 
-		case Direction.down:
+		case 3:
 			node = downNode;
 			moveValue = new Vector2 (0, -moveVal);
 			break;

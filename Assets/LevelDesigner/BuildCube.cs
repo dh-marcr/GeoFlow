@@ -5,7 +5,6 @@ public class BuildCube : MonoBehaviour
 {
 	void Start ()
 	{
-		
 		for (int i = 0; i < 6; i++) {
 			buildGrid ();
 		}
@@ -25,8 +24,6 @@ public class BuildCube : MonoBehaviour
 		int yAxisCount = 1;
 
 		for (int i = 1; i < (gridSize * gridSize + 1); i++) {
-
-			//Debug.Log ("Created tile (" + i + ")");
 
 			if (xAxisCount == 1) {
 				if (yAxisCount == 1) {
@@ -51,48 +48,42 @@ public class BuildCube : MonoBehaviour
 			float chance = Random.value;
 			if (chance > 0.55f) {
 				newTile = (GameObject)Instantiate (tilePrefab, Vector3.zero, Quaternion.identity) as GameObject;
-				//newTilePos.z -= Random.Range (0, 0.5f);
 				newTile.transform.localPosition = newTilePos;
-
 				newTile.transform.parent = newFaceHolder.transform;
 			}
 		}
 
-		newFaceHolder.transform.parent = transform;
+		newFaceHolder.transform.parent = spawnHere;
 		calculateFaceRotation (newFaceHolder.transform);
+
+		CameraControl cc = FindObjectOfType<CameraControl> ();
+		cc.SetAngle ();
 	}
 
 	int faceIndex = 0;
 
 	void calculateFaceRotation (Transform in_grid)
 	{
-		//which orientation the new face should be - left, right, front, back, up, down
-
 		Vector3 newRotation = Vector3.zero;
 		switch (faceIndex) {
 
 		case 1:
-			//bottom face
 			newRotation = new Vector3 (270, 0, 0);
 			break;
 
 		case 2:
-			//back face
 			newRotation = new Vector3 (0, 180, 0);
 			break;
 
 		case 3:
-			//left face
 			newRotation = new Vector3 (0, 90, 0);
 			break;
 
 		case 4:
-			//right face
 			newRotation = new Vector3 (0, 270, 0);
 			break;
 
 		case 5:
-			//top face
 			newRotation = new Vector3 (90, 0, 0);
 			break;
 		}
@@ -109,4 +100,6 @@ public class BuildCube : MonoBehaviour
 	public float depthOffset;
 
 	public GameObject tilePrefab;
+
+	public Transform spawnHere;
 }

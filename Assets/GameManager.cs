@@ -17,16 +17,14 @@ public class GameManager : MonoBehaviour {
 
 		if (Input.GetMouseButtonUp (0)) {
 			if (Physics.Raycast (ray, out hit)) {
-
-				if (hit.collider.tag == "Object") {
-					//Destroy (hit.transform.parent.gameObject);
-				}
-
 				if (hit.collider.tag == "Tile") {
-					//selectTile (hit.collider.GetComponent<TileController> ());
+					selectTile (hit.collider.GetComponent<TileController> ());
+					EditingView (hit.transform);
 				} else if (hit.collider.tag == "BehindGame") {
-					//selectedTile.uiControl.SetActive (false);
-					//selectedTile = null;
+					if (selectedTile && selectedTile == hit.transform.GetComponent<TileController>()) {
+						selectedTile.uiControl.SetActive (false);
+						selectedTile = null;
+					}
 				}
 			}
 		}
@@ -47,6 +45,18 @@ public class GameManager : MonoBehaviour {
 			selectedTile = in_tileHit;
 			in_tileHit.uiControl.SetActive (true);
 		}
+	}
+
+	void EditingView(Transform in_tile){
+
+		GameObject point = new GameObject ("Point");
+
+		Vector3 mousePos = Input.mousePosition;
+		mousePos = Camera.main.WorldToViewportPoint (mousePos);
+
+		point.transform.position = new Vector3 (mousePos.x, mousePos.y, in_tile.position.z);
+
+		Debug.Log ("point : " + point.transform.position);
 	}
 
 	static public GameManager instance;
